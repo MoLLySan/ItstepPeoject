@@ -57,5 +57,6 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+        .dropdown-item >a:hover { color: green }
     </style>
 </head>

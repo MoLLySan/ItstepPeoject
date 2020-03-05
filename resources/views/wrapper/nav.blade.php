@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-warning text-dark">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,24 +34,57 @@
               
             
         @endif
+
+
+
+
+
+
         
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item dropdown">
+
+
+
+        @if(auth()->user()->is_admin)
+        <li class="nav-item dropdown bg-warning">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            for maneger
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+          <div class="dropdown-menu bg-warning" aria-labelledby="navbarDropdown" style=".dropdown-item a:hover { color: green }">
+            <a class="dropdown-item" href="#" >users</a>
+          <a class="dropdown-item" href="#">products</a>
+
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
+
+        @endif
+
+
+
+
+   
+
+
+
+
+
+
+
+        {{-- <li class="nav-item">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          
+           <a class="dropdown-item" href="{{ url('/home') }}">Users</a>
+           <a class="dropdown-item" href="{{ url('/home') }}">News</a>
+            
+          
+        </div>
+        </li> --}}
+
+
+
+
+
     </ul>
       
       
@@ -72,6 +105,18 @@
             <div class="nav-item" >               
                 <a class="nav-link" href="{{ url('/home') }}">Cart</a>
             </div>        
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/home') }}" onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+              logout
+          </a>
+
+          <form id="logout-form" action="{{ url('/home') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
+
         </li>
     </ul>
     </div>
