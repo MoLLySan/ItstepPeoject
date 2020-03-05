@@ -6,21 +6,35 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-            @if (Route::has('login'))
-            <div class="nav-item" >
+        @if (Route::has('login'))
+        
+           
+            
                 @auth
+                <li class="nav-item active">
+                <div class="nav-item" >
                     <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                </div>
+                </li>
                 @else
+                <li class="nav-item active">
+                <div class="nav-item" >
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
+                </div>
+              </li>
 
                     @if (Route::has('register'))
+                    <li class="nav-item active">
+                    <div class="nav-item" >
                         <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    </div>
+                  </li>
                     @endif
                 @endauth
-            </div>
+              
+            
         @endif
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
