@@ -6,34 +6,7 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        @if (Route::has('login'))
-        
-           
-            
-                @auth
-                <li class="nav-item active">
-                <div class="nav-item" >
-                    <a class="nav-link text-dark" href="{{ url('/home') }}">HOME</a>
-                </div>
-                </li>
-                @else
-                <li class="nav-item active">
-                <div class="nav-item" >
-                    <a class="nav-link text-dark" href="{{ route('login') }}">LOGIN</a>
-                </div>
-              </li>
 
-                    @if (Route::has('register'))
-                    <li class="nav-item active">
-                    <div class="nav-item" >
-                        <a class="nav-link text-dark" href="{{ route('register') }}">REGISTER</a>
-                    </div>
-                  </li>
-                    @endif
-                @endauth
-              
-            
-        @endif
 
 
 
@@ -42,10 +15,13 @@
 
         
         <li class="nav-item">
-          <a class="nav-link text-dark" href="#">LINK</a>
+          <a class="nav-link text-dark" href="{{route('products')}}">CATALOG</a>
         </li>
 
+        @auth
 
+
+        
 
         @if(auth()->user()->is_admin)
         
@@ -55,12 +31,13 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown" style=".dropdown-item a:hover { color: green }">
           <a class="dropdown-item text-dark" href="#" >USERS</a>
-          <a class="dropdown-item text-dark" href="{{route('products')}}">PRODUCTS</a>
+          
 
         </li>
         @else
 
         @endif
+        @endauth 
 
 
 
@@ -92,15 +69,39 @@
       
     <ul class="navbar-nav" >
         <li class="nav-item">
+
+
+
             @if (Route::has('login'))
-            <div class="nav-item" >
-                @auth
-                    <a class="nav-link text-dark" href="{{ url('/home') }}">MY ACCOUNT</a>
-                @else
-                    
-                @endauth
+            @auth
+            <div class="nav-item">                
+              <a class="nav-link text-dark" href="{{ url('/home') }}">MY ACCOUNT</a>
             </div> 
+            @else
+            <li class="nav-item active">
+            <div class="nav-item" >
+                <a class="nav-link text-dark" href="{{ route('login') }}">LOGIN</a>
+            </div>
+            </li>
+
+                @if (Route::has('register'))
+                <li class="nav-item active">
+                <div class="nav-item" >
+                    <a class="nav-link text-dark" href="{{ route('register') }}">REGISTER</a>
+                </div>
+                </li>
                 @endif
+
+
+            @endauth
+            @endif
+
+
+
+
+
+
+
         </li>
 
         <li class="nav-item">           

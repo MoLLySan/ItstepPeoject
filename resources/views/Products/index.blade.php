@@ -3,21 +3,34 @@
 @include('wrapper.head')
 <body>
     @include('wrapper.nav')
-
-    <div class="container">
+        @if(auth()->user()->is_admin)
         <div>
         <button data-toggle="modal" data-target="#myModal" class="btn btn-outline-white">Создать продукт</button>
         </div>
-        <div>
+        @else
+        @endif
+    <div class="container">
+        
+        <div class="row">
+            
         @foreach ($products as $product)
+        <div class="col-md-4">
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="storage/{{$product->img}}" alt="Card image cap">
             <div class="card-body">
-            <h5 class="card-title">{{$product->name}}</h5>
-            <p class="card-text">{{$product->description}}</p>
-            <p class="card-text">{{$product->cost}} тг.</p>
+            <h5 class="card-title text-dark" >{{$product->name}}</h5>
+            <p class="card-text text-dark">{{$product->description}}</p>
+            <p class="card-text text-dark">{{$product->cost}} тг.</p>
             <a href="{{route('more',$product->id)}}" class="btn btn-primary">подробнее</a>
+
+            @auth
+            @if(auth()->user()->is_admin)
+            <a href="{{route('proddel',$product->id)}}" class="btn btn-danger">удалить</a>
+            @else
+            @endif
+            @endauth
             </div>
+        </div>
         </div>
         @endforeach
         </div>

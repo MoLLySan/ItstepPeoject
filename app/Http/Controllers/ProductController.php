@@ -20,7 +20,7 @@ class ProductController extends Controller
             "cost"=>$request->cost,
             "img"=>$img
         ]);
-        return redirect()->route('products');
+        
     }
 
 
@@ -28,6 +28,18 @@ class ProductController extends Controller
     {
         
         return view('Products.more', compact('product'));
+    }
+
+    public function delProduct(Product $product)
+    {
+        
+        $product->delete();
+        return redirect()->route('products');
+    }
+
+    public function destroy(Product $product)
+    {
+        
     }
 
 }
