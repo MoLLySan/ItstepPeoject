@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-warning text-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg bg-light">
+    <a class="navbar-brand text-dark" href="{{route('welcome')}}">HOLZ</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,20 +13,20 @@
                 @auth
                 <li class="nav-item active">
                 <div class="nav-item" >
-                    <a class="nav-link" href="{{ url('/home') }}">Home</a>
+                    <a class="nav-link text-dark" href="{{ url('/home') }}">HOME</a>
                 </div>
                 </li>
                 @else
                 <li class="nav-item active">
                 <div class="nav-item" >
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    <a class="nav-link text-dark" href="{{ route('login') }}">LOGIN</a>
                 </div>
               </li>
 
                     @if (Route::has('register'))
                     <li class="nav-item active">
                     <div class="nav-item" >
-                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                        <a class="nav-link text-dark" href="{{ route('register') }}">REGISTER</a>
                     </div>
                   </li>
                     @endif
@@ -42,21 +42,23 @@
 
         
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link text-dark" href="#">LINK</a>
         </li>
 
 
 
         @if(auth()->user()->is_admin)
-        <li class="nav-item dropdown bg-warning">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            for maneger
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-dark" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            FOR MANAGER
           </a>
-          <div class="dropdown-menu bg-warning" aria-labelledby="navbarDropdown" style=".dropdown-item a:hover { color: green }">
-            <a class="dropdown-item" href="#" >users</a>
-          <a class="dropdown-item" href="#">products</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style=".dropdown-item a:hover { color: green }">
+          <a class="dropdown-item text-dark" href="#" >USERS</a>
+          <a class="dropdown-item text-dark" href="{{route('products')}}">PRODUCTS</a>
 
         </li>
+        @else
 
         @endif
 
@@ -93,7 +95,7 @@
             @if (Route::has('login'))
             <div class="nav-item" >
                 @auth
-                    <a class="nav-link" href="{{ url('/home') }}">My Account</a>
+                    <a class="nav-link text-dark" href="{{ url('/home') }}">MY ACCOUNT</a>
                 @else
                     
                 @endauth
@@ -103,14 +105,14 @@
 
         <li class="nav-item">           
             <div class="nav-item" >               
-                <a class="nav-link" href="{{ url('/home') }}">Cart</a>
+                <a class="nav-link text-dark" href="{{ url('/home') }}">CART</a>
             </div>        
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="{{ url('/home') }}" onclick="event.preventDefault();
+          <a class="nav-link text-dark" href="{{ url('/home') }}" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
-              logout
+              LOGOUT
           </a>
 
           <form id="logout-form" action="{{ url('/home') }}" method="POST" style="display: none;">

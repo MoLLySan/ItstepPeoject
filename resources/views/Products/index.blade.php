@@ -6,16 +6,17 @@
 
     <div class="container">
         <div>
-        <button data-toggle="modal" data-target="#myModal" class="btn btn-outline-success">Создать продукт</button>
+        <button data-toggle="modal" data-target="#myModal" class="btn btn-outline-white">Создать продукт</button>
         </div>
         <div>
-        @foreach ($products as $item)
+        @foreach ($products as $product)
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="..." alt="Card image cap">
+            <img class="card-img-top" src="storage/{{$product->img}}" alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">{{$product->name}}</h5>
+            <p class="card-text">{{$product->description}}</p>
+            <p class="card-text">{{$product->cost}} тг.</p>
+            <a href="{{route('more',$product->id)}}" class="btn btn-primary">подробнее</a>
             </div>
         </div>
         @endforeach
@@ -28,13 +29,13 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Create user</h4>
+                <h4 class="modal-title">Add product</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form method="POST" action="#" enctype="multipart/form-data">
+            <form method="POST" action="{{route('prodCreate')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Название') }}</label>
@@ -50,7 +51,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('description') }}</label>
+                        <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('описание') }}</label>
 
                         <div class="col-md-6">
                             <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" required autocomplete="description" autofocus>
@@ -63,7 +64,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="cost" class="col-md-4 col-form-label text-md-right">{{ __('cost') }}</label>
+                        <label for="cost" class="col-md-4 col-form-label text-md-right">{{ __('цена') }}</label>
 
                         <div class="col-md-6">
                             <input id="cost" type="bigInteger" class="form-control @error('cost') is-invalid @enderror" name="cost" value="{{ old('cost') }}" required autocomplete="cost" autofocus>
@@ -76,10 +77,10 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+                        <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('картинка') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password" type="file" class="form-control @error('image') is-invalid @enderror" name="image" required>
+                            <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" required>
 
                             @error('image')
                             <span class="invalid-feedback" role="alert">
@@ -101,6 +102,7 @@
         </div>
     </div>
 </div>
+@include('wrapper.footer')
 @include('wrapper.scripts')
 </body>
 </html>
