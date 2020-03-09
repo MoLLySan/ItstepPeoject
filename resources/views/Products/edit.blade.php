@@ -1,67 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html >
 @include('wrapper.head')
 <body>
-    @include('wrapper.nav')
-    @auth
-        @if(auth()->user()->is_admin)
-        <div>
-        <button data-toggle="modal" data-target="#myModal" class="btn btn-outline-white">Создать продукт</button>
-        </div>
-        @else
-        @endif
-        @endauth
-        
-    <div class="container">
-        
-        <div class="row row-cols-3">
-            
-        @foreach ($products as $product)
-        <div class="col">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="storage/{{$product->img}}" alt="Card image cap">
-            <div class="card-body">
-            <h5 class="card-title text-dark" >{{$product->name}}</h5>
-            <p class="card-text text-dark">{{$product->description}}</p>
-            <p class="card-text text-dark">{{$product->cost}} тг.</p>
-            <a href="{{route('more',$product->id)}}" class="btn btn-primary">подробнее</a>
-
-            @auth
-            @if(auth()->user()->is_admin)
-            <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning ">
-                            <span>изменить</span>
-                        </a>
-            <form action="{{ route('product.destroy', $product->id) }}" method="POST" class="btn">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">
-                                <span >удалить</span>
-                            </button>
-            </form>
-            @else
-            @endif
-            @endauth
-            </div>
-        </div>
-        </div>
-        @endforeach
-        </div>
-    </div>
-
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Add product</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <!-- Modal body -->
-            <div class="modal-body">
-            <form method="POST" action="{{route('prodCreate')}}" enctype="multipart/form-data">
+@include('wrapper.nav')
+<div class="card">
+    <div class="card-body">
+            <form method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
                     <div class="form-group row">
                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Название') }}</label>
 
@@ -118,19 +64,20 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('create') }}
+                                {{ __('Edit') }}
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
-</div>
-@include('wrapper.footer')
+        @include('wrapper.footer')
 @include('wrapper.scripts')
+
 </body>
 </html>
+
+
 
 
 

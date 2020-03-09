@@ -20,26 +20,44 @@ class ProductController extends Controller
             "cost"=>$request->cost,
             "img"=>$img
         ]);
+        return redirect()->route('products');
         
     }
+    public function update(Request $request, Product $product)
+    {
+        $img = $request->file('image')->store('upload','public');
 
 
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->cost =$request->cost;
+        $product->img=$img;
+        
+        $product->save();
+
+        
+
+        return redirect()->route('product.index');
+    }
+
+    public function edit(Product $product)
+    {
+        return view('products.edit', compact('product'));
+    }
     public function productMore(Product $product, Request $request)
     {
         
         return view('Products.more', compact('product'));
     }
 
-    public function delProduct(Product $product)
-    {
-        
-        $product->delete();
-        return redirect()->route('products');
-    }
-
     public function destroy(Product $product)
     {
         
+        $product->delete();
+        
+        return redirect()->route('products');
     }
+
+
 
 }

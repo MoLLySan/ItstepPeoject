@@ -109,7 +109,7 @@
                 <a class="nav-link text-dark" href="{{ url('/home') }}">CART</a>
             </div>        
         </li>
-
+        @auth
         <li class="nav-item">
           <a class="nav-link text-dark" href="{{ url('/home') }}" onclick="event.preventDefault();
                                document.getElementById('logout-form').submit();">
@@ -119,8 +119,12 @@
           <form id="logout-form" action="{{ url('/home') }}" method="POST" style="display: none;">
               @csrf
           </form>
-
+          
         </li>
+
+
+        
+        @endauth
     </ul>
     </div>
   </nav>

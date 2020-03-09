@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +22,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/Products','ProductController@index')->name('products');
 Route::post('/createProduct','ProductController@createProduct')->name('prodCreate');
-Route::get('/delProduct','ProductController@delProduct')->name('proddel');
+Route::get('/delProduct','ProductController@delProduct')->name('destroyy');
 Route::get('/product/{product}/show','ProductController@productMore')->name('more');
 
-
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/user', 'UserController')->names('user');
+    Route::resource('/product', 'ProductController')->names('product');
+});
