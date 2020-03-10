@@ -18,7 +18,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Auth::routes();
-
+// Route::post('/logout','LoginController@logout')->name('logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/Products','ProductController@index')->name('products');
 Route::post('/createProduct','ProductController@createProduct')->name('prodCreate');
