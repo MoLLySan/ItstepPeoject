@@ -6,13 +6,13 @@
     @auth
         @if(auth()->user()->is_admin)
         <div>
-        <button data-toggle="modal" data-target="#myModal" class="btn btn-outline-white">Создать продукт</button>
+        <button data-toggle="modal" data-target="#myModal" class="btn btn-dark">Создать продукт</button>
         </div>
         @else
         @endif
         @endauth
         
-    <div class="container">
+    <div class="container" style="height: 100vh">
         
         <div class="row row-cols-3">
             
@@ -46,6 +46,7 @@
         </div>
         @endforeach
         </div>
+        {{$products->links()}}
     </div>
 
 <div class="modal" id="myModal">

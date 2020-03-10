@@ -7,7 +7,7 @@
         @include('wrapper.nav')
 
         
-        <div class="col-md-12 bg-dark text-white">
+        <div class="col-md-12 bg-white">
             @include('wrapper.carusel')
        </div> 
 
@@ -17,7 +17,7 @@
        
 
 
-       @include('wrapper.catalog')
+       {{-- @include('wrapper.catalog') --}}
 
 
             
@@ -28,7 +28,7 @@
            
           
             
-        
+ 
         @include('wrapper.footer')
         @include('wrapper.scripts')
     </body>

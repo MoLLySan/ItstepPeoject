@@ -7,10 +7,10 @@
 
     @include('wrapper.nav')
 
-</div>
+</div >
 
 
-    <div class="container pt-2">
+    <div class="container pt-2" style="height: 100vh">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
